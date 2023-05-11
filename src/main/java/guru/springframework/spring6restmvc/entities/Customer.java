@@ -7,6 +7,9 @@ import org.hibernate.annotations.GenericGenerator;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+/**
+ * Created by jt, Spring Framework Guru.
+ */
 @Getter
 @Setter
 @Builder
@@ -14,7 +17,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Customer {
-
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
