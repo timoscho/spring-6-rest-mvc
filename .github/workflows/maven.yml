@@ -31,10 +31,10 @@ jobs:
           --health-timeout 5s
           --health-retries 5
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
       - uses: joshuaavalon/flyway-action@v3.0.0
         with:
-          url: jdbc:mysql://127.0.0.1:3306/restdb?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+          url: jdbc:postgresql://postgres:5432/db
           user: user
           password: password
       - run: echo 'testing'
