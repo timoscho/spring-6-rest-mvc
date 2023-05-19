@@ -36,6 +36,7 @@ jobs:
         echo "test"
         sudo mysql
         echo "test2"
+        sudo mysql -e "CREATE DATABASE restdb; CREATE USER 'restadmin'@'localhost' IDENTIFIED BY 'password'; GRANT ALL PRIVILEGES ON * . * TO 'restadmin'@'localhost'; FLUSH PRIVILEGES;"
         sudo mysql -u root
         echo "test3"
         sudo mysql -u root -p
