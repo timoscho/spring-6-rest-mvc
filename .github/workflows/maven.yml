@@ -33,6 +33,9 @@ jobs:
     - name: Set up MySQL
       run: |
         sudo /etc/init.d/mysql start
+        echo "test"
+        sudo mysql
+        echo "test2"
         sudo mysql -e "CREATE DATABASE restdb; CREATE USER 'restadmin'@'localhost' IDENTIFIED BY 'password'; GRANT ALL PRIVILEGES ON * . * TO 'restadmin'@'localhost'; FLUSH PRIVILEGES;" -u root
     - name: Build with Maven
       run: mvn -B package --file pom.xml
