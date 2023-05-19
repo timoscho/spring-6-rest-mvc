@@ -34,7 +34,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: joshuaavalon/flyway-action@v3.0.0
         with:
-          url: jdbc:postgresql://postgres:5432/db
+          url: jdbc:mysql://127.0.0.1:3306/restdb?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
           user: user
           password: password
       - run: echo 'testing'
