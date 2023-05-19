@@ -16,31 +16,11 @@ on:
     branches: [ "master" ]
 
 jobs:
-  flyawaydb:
-    runs-on: ubuntu-latest
-    services:
-      postgres:
-        image: postgres
-        env:
-          POSTGRES_DB: db
-          POSTGRES_USER: user
-          POSTGRES_PASSWORD: password
-        options: >-
-          --health-cmd pg_isready
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-    steps:
-      - uses: actions/checkout@v2
-      - uses: joshuaavalon/flyway-action@v3.0.0
-        with:
-          url: jdbc:postgresql://postgres:5432/db
-          user: user
-          password: password
-      - run: echo 'testing'
-      
+  env:
+    DB_DATABASE: restdb
+    DB_USER: restadmin
+    DB_PASSWORD: password
   build:
-    needs: flyawaydb
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -50,5 +30,9 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
+    - name: Set up MySQL
+      run: |
+        sudo /etc/init.d/mysql start
+        mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
     - name: Build with Maven
       run: mvn -B package --file pom.xml
