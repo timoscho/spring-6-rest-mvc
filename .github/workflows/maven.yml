@@ -16,12 +16,12 @@ on:
     branches: [ "master" ]
 
 jobs:
-  env:
-    DB_DATABASE: restdb
-    DB_USER: restadmin
-    DB_PASSWORD: password
   build:
     runs-on: ubuntu-latest
+    env:
+      DB_DATABASE: restdb
+      DB_USER: restadmin
+      DB_PASSWORD: password
     steps:
     - uses: actions/checkout@v3
     - name: Set up JDK 17
